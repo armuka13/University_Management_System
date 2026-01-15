@@ -10,6 +10,7 @@ public class StudentView extends JPanel {
     private JLabel tuitionLabel;
     private JLabel graduationLabel;
 
+    // Create Student Panel
     private JTextField studentIdField;
     private JTextField nameField;
     private JTextField emailField;
@@ -17,9 +18,20 @@ public class StudentView extends JPanel {
     private JTextField majorField;
     private JButton createButton;
 
+    // Enroll Panel
     private JTextField enrollStudentIdField;
     private JTextField enrollCourseIdField;
     private JButton enrollButton;
+
+    // Update/Delete Panel (NEW)
+    private JTextField updateStudentIdField;
+    private JTextField updateNameField;
+    private JTextField updateEmailField;
+    private JTextField updateAgeField;
+    private JTextField updateMajorField;
+    private JButton updateButton;
+    private JButton deleteButton;
+    private JButton loadButton;
 
     public StudentView() {
         setLayout(new BorderLayout(10, 10));
@@ -27,6 +39,7 @@ public class StudentView extends JPanel {
 
         JPanel topPanel = new JPanel(new BorderLayout());
 
+        // Info Panel
         JPanel infoPanel = new JPanel(new GridLayout(4, 1, 5, 5));
         infoPanel.setBorder(BorderFactory.createTitledBorder("Student Information"));
         gpaLabel = new JLabel("GPA: N/A");
@@ -44,6 +57,7 @@ public class StudentView extends JPanel {
         infoPanel.add(tuitionLabel);
         infoPanel.add(graduationLabel);
 
+        // Create Student Panel
         JPanel inputPanel = new JPanel(new GridLayout(6, 2, 5, 5));
         inputPanel.setBorder(BorderFactory.createTitledBorder("Create New Student"));
 
@@ -74,6 +88,49 @@ public class StudentView extends JPanel {
         inputPanel.add(new JLabel());
         inputPanel.add(createButton);
 
+        // Update/Delete Student Panel (NEW)
+        JPanel updatePanel = new JPanel(new GridLayout(7, 2, 5, 5));
+        updatePanel.setBorder(BorderFactory.createTitledBorder("Update/Delete Student"));
+
+        updatePanel.add(new JLabel("Student ID:"));
+        JPanel idPanel = new JPanel(new BorderLayout(5, 0));
+        updateStudentIdField = new JTextField();
+        loadButton = new JButton("Load");
+        loadButton.setBackground(new Color(100, 149, 237));
+        loadButton.setForeground(Color.WHITE);
+        idPanel.add(updateStudentIdField, BorderLayout.CENTER);
+        idPanel.add(loadButton, BorderLayout.EAST);
+        updatePanel.add(idPanel);
+
+        updatePanel.add(new JLabel("Name:"));
+        updateNameField = new JTextField();
+        updatePanel.add(updateNameField);
+
+        updatePanel.add(new JLabel("Email:"));
+        updateEmailField = new JTextField();
+        updatePanel.add(updateEmailField);
+
+        updatePanel.add(new JLabel("Age:"));
+        updateAgeField = new JTextField();
+        updatePanel.add(updateAgeField);
+
+        updatePanel.add(new JLabel("Major:"));
+        updateMajorField = new JTextField();
+        updatePanel.add(updateMajorField);
+
+        updateButton = new JButton("Update Student");
+        updateButton.setBackground(new Color(255, 165, 0));
+        updateButton.setForeground(Color.WHITE);
+        updateButton.setFont(new Font("Arial", Font.BOLD, 12));
+        updatePanel.add(updateButton);
+
+        deleteButton = new JButton("Delete Student");
+        deleteButton.setBackground(new Color(220, 20, 60));
+        deleteButton.setForeground(Color.WHITE);
+        deleteButton.setFont(new Font("Arial", Font.BOLD, 12));
+        updatePanel.add(deleteButton);
+
+        // Enroll Panel
         JPanel enrollPanel = new JPanel(new GridLayout(3, 2, 5, 5));
         enrollPanel.setBorder(BorderFactory.createTitledBorder("Enroll in Course"));
 
@@ -92,14 +149,16 @@ public class StudentView extends JPanel {
         enrollPanel.add(new JLabel());
         enrollPanel.add(enrollButton);
 
-        JPanel formsPanel = new JPanel(new GridLayout(1, 2, 10, 0));
+        // Combine panels
+        JPanel formsPanel = new JPanel(new GridLayout(1, 3, 10, 0));
         formsPanel.add(inputPanel);
+        formsPanel.add(updatePanel);
         formsPanel.add(enrollPanel);
 
         topPanel.add(infoPanel, BorderLayout.NORTH);
         topPanel.add(formsPanel, BorderLayout.CENTER);
 
-        messageArea = new JTextArea(12, 50);
+        messageArea = new JTextArea(10, 50);
         messageArea.setEditable(false);
         messageArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
         JScrollPane scrollPane = new JScrollPane(messageArea);
@@ -140,15 +199,27 @@ public class StudentView extends JPanel {
         messageArea.setText("");
     }
 
-    // Getters for form fields
+    // Getters for Create form
     public JTextField getStudentIdField() { return studentIdField; }
     public JTextField getNameField() { return nameField; }
     public JTextField getEmailField() { return emailField; }
     public JTextField getAgeField() { return ageField; }
     public JTextField getMajorField() { return majorField; }
     public JButton getCreateButton() { return createButton; }
+
+    // Getters for Enroll form
     public JTextField getEnrollStudentIdField() { return enrollStudentIdField; }
     public JTextField getEnrollCourseIdField() { return enrollCourseIdField; }
     public JButton getEnrollButton() { return enrollButton; }
+
+    // Getters for Update/Delete form (NEW)
+    public JTextField getUpdateStudentIdField() { return updateStudentIdField; }
+    public JTextField getUpdateNameField() { return updateNameField; }
+    public JTextField getUpdateEmailField() { return updateEmailField; }
+    public JTextField getUpdateAgeField() { return updateAgeField; }
+    public JTextField getUpdateMajorField() { return updateMajorField; }
+    public JButton getUpdateButton() { return updateButton; }
+    public JButton getDeleteButton() { return deleteButton; }
+    public JButton getLoadButton() { return loadButton; }
 }
 

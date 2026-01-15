@@ -1,13 +1,13 @@
 package edu.university.main;
 
-
-import edu.university.main.repository.*;
-import edu.university.main.service.*;
 import edu.university.main.controller.*;
-import edu.university.main.view.MainFrame;
-
-
+import edu.university.main.service.*;
+import edu.university.main.view.*;
+import edu.university.main.repository.*;
+import edu.university.main.model.*;
 import javax.swing.SwingUtilities;
+import javax.swing.JOptionPane;
+import java.util.Optional;
 
 public class UniversityManagementApp {
     public static void main(String[] args) {
@@ -44,7 +44,11 @@ public class UniversityManagementApp {
                     financialService, mainFrame.getFinancialView()
             );
 
-            // Wire up Student View event handlers
+            // ================================================================
+            // STUDENT VIEW EVENT HANDLERS
+            // ================================================================
+
+            // Create Student Button
             mainFrame.getStudentView().getCreateButton().addActionListener(e -> {
                 try {
                     String id = mainFrame.getStudentView().getStudentIdField().getText();
@@ -67,6 +71,114 @@ public class UniversityManagementApp {
                 }
             });
 
+            // Load Student Button (NEW)
+            mainFrame.getStudentView().getLoadButton().addActionListener(e -> {
+                String studentId = mainFrame.getStudentView().getUpdateStudentIdField().getText();
+
+                if (studentId.isEmpty()) {
+                    mainFrame.getStudentView().displayMessage("Error: Please enter Student ID");
+                    return;
+                }
+
+                Optional<Student> studentOpt = enrollmentService.getStudentRepository().findById(studentId);
+
+                if (studentOpt.isPresent()) {
+                    Student student = studentOpt.get();
+                    mainFrame.getStudentView().getUpdateNameField().setText(student.getName());
+                    mainFrame.getStudentView().getUpdateEmailField().setText(student.getEmail());
+                    mainFrame.getStudentView().getUpdateAgeField().setText(String.valueOf(student.getAge()));
+                    mainFrame.getStudentView().getUpdateMajorField().setText(student.getMajor());
+                    mainFrame.getStudentView().displayMessage("Student loaded: " + student.getName());
+                    mainFrame.updateStatus("Student loaded");
+                } else {
+                    mainFrame.getStudentView().displayMessage("Error: Student not found");
+                }
+            });
+
+            // Update Student Button (NEW)
+            mainFrame.getStudentView().getUpdateButton().addActionListener(e -> {
+                try {
+                    String studentId = mainFrame.getStudentView().getUpdateStudentIdField().getText();
+
+                    if (studentId.isEmpty()) {
+                        mainFrame.getStudentView().displayMessage("Error: Please enter Student ID");
+                        return;
+                    }
+
+                    Optional<Student> studentOpt = enrollmentService.getStudentRepository().findById(studentId);
+
+                    if (studentOpt.isPresent()) {
+                        Student student = studentOpt.get();
+
+                        // Update fields
+                        student.setName(mainFrame.getStudentView().getUpdateNameField().getText());
+                        student.setEmail(mainFrame.getStudentView().getUpdateEmailField().getText());
+                        student.setAge(Integer.parseInt(mainFrame.getStudentView().getUpdateAgeField().getText()));
+                        student.setMajor(mainFrame.getStudentView().getUpdateMajorField().getText());
+
+                        // Save
+                        boolean success = enrollmentService.updateStudent(student);
+
+                        if (success) {
+                            mainFrame.getStudentView().displayMessage("Student updated successfully: " + student.getName());
+                            mainFrame.updateStatus("Student updated");
+                        } else {
+                            mainFrame.getStudentView().displayMessage("Error: Update failed");
+                        }
+                    } else {
+                        mainFrame.getStudentView().displayMessage("Error: Student not found");
+                    }
+                } catch (NumberFormatException ex) {
+                    mainFrame.getStudentView().displayMessage("Error: Invalid age format");
+                }
+            });
+
+            // Delete Student Button (NEW)
+            mainFrame.getStudentView().getDeleteButton().addActionListener(e -> {
+                String studentId = mainFrame.getStudentView().getUpdateStudentIdField().getText();
+
+                if (studentId.isEmpty()) {
+                    mainFrame.getStudentView().displayMessage("Error: Please enter Student ID");
+                    return;
+                }
+
+                Optional<Student> studentOpt = enrollmentService.getStudentRepository().findById(studentId);
+
+                if (studentOpt.isPresent()) {
+                    Student student = studentOpt.get();
+
+                    // Confirm deletion
+                    int confirm = JOptionPane.showConfirmDialog(
+                            mainFrame,
+                            "Are you sure you want to delete student: " + student.getName() + "?",
+                            "Confirm Deletion",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE
+                    );
+
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        boolean success = enrollmentService.deleteStudent(studentId);
+
+                        if (success) {
+                            mainFrame.getStudentView().displayMessage("Student deleted: " + student.getName());
+                            mainFrame.updateStatus("Student deleted");
+
+                            // Clear update fields
+                            mainFrame.getStudentView().getUpdateStudentIdField().setText("");
+                            mainFrame.getStudentView().getUpdateNameField().setText("");
+                            mainFrame.getStudentView().getUpdateEmailField().setText("");
+                            mainFrame.getStudentView().getUpdateAgeField().setText("");
+                            mainFrame.getStudentView().getUpdateMajorField().setText("");
+                        } else {
+                            mainFrame.getStudentView().displayMessage("Error: Delete failed");
+                        }
+                    }
+                } else {
+                    mainFrame.getStudentView().displayMessage("Error: Student not found");
+                }
+            });
+
+            // Enroll Student Button
             mainFrame.getStudentView().getEnrollButton().addActionListener(e -> {
                 String studentId = mainFrame.getStudentView().getEnrollStudentIdField().getText();
                 String courseId = mainFrame.getStudentView().getEnrollCourseIdField().getText();
@@ -79,7 +191,11 @@ public class UniversityManagementApp {
                 mainFrame.getStudentView().getEnrollCourseIdField().setText("");
             });
 
-            // Wire up Course View event handlers
+            // ================================================================
+            // COURSE VIEW EVENT HANDLERS
+            // ================================================================
+
+            // Create Course Button
             mainFrame.getCourseView().getCreateButton().addActionListener(e -> {
                 try {
                     String id = mainFrame.getCourseView().getCourseIdField().getText();
@@ -104,6 +220,117 @@ public class UniversityManagementApp {
                 }
             });
 
+            // Load Course Button (NEW)
+            mainFrame.getCourseView().getLoadCourseButton().addActionListener(e -> {
+                String courseId = mainFrame.getCourseView().getUpdateCourseIdField().getText();
+
+                if (courseId.isEmpty()) {
+                    mainFrame.getCourseView().displayMessage("Error: Please enter Course ID");
+                    return;
+                }
+
+                Optional<Course> courseOpt = enrollmentService.getCourseRepository().findById(courseId);
+
+                if (courseOpt.isPresent()) {
+                    Course course = courseOpt.get();
+                    mainFrame.getCourseView().getUpdateCourseNameField().setText(course.getCourseName());
+                    mainFrame.getCourseView().getUpdateInstructorField().setText(course.getInstructor());
+                    mainFrame.getCourseView().getUpdateCreditsField().setText(String.valueOf(course.getCredits()));
+                    mainFrame.getCourseView().getUpdateCapacityField().setText(String.valueOf(course.getMaxCapacity()));
+                    mainFrame.getCourseView().getUpdateDepartmentField().setText(course.getDepartment());
+                    mainFrame.getCourseView().displayMessage("Course loaded: " + course.getCourseName());
+                    mainFrame.updateStatus("Course loaded");
+                } else {
+                    mainFrame.getCourseView().displayMessage("Error: Course not found");
+                }
+            });
+
+            // Update Course Button (NEW)
+            mainFrame.getCourseView().getUpdateButton().addActionListener(e -> {
+                try {
+                    String courseId = mainFrame.getCourseView().getUpdateCourseIdField().getText();
+
+                    if (courseId.isEmpty()) {
+                        mainFrame.getCourseView().displayMessage("Error: Please enter Course ID");
+                        return;
+                    }
+
+                    Optional<Course> courseOpt = enrollmentService.getCourseRepository().findById(courseId);
+
+                    if (courseOpt.isPresent()) {
+                        Course course = courseOpt.get();
+
+                        // Update fields
+                        course.setCourseName(mainFrame.getCourseView().getUpdateCourseNameField().getText());
+                        course.setInstructor(mainFrame.getCourseView().getUpdateInstructorField().getText());
+                        course.setCredits(Integer.parseInt(mainFrame.getCourseView().getUpdateCreditsField().getText()));
+                        course.setMaxCapacity(Integer.parseInt(mainFrame.getCourseView().getUpdateCapacityField().getText()));
+                        course.setDepartment(mainFrame.getCourseView().getUpdateDepartmentField().getText());
+
+                        // Save
+                        boolean success = enrollmentService.updateCourse(course);
+
+                        if (success) {
+                            mainFrame.getCourseView().displayMessage("Course updated successfully: " + course.getCourseName());
+                            mainFrame.updateStatus("Course updated");
+                        } else {
+                            mainFrame.getCourseView().displayMessage("Error: Update failed");
+                        }
+                    } else {
+                        mainFrame.getCourseView().displayMessage("Error: Course not found");
+                    }
+                } catch (NumberFormatException ex) {
+                    mainFrame.getCourseView().displayMessage("Error: Invalid number format");
+                }
+            });
+
+            // Delete Course Button (NEW)
+            mainFrame.getCourseView().getDeleteButton().addActionListener(e -> {
+                String courseId = mainFrame.getCourseView().getUpdateCourseIdField().getText();
+
+                if (courseId.isEmpty()) {
+                    mainFrame.getCourseView().displayMessage("Error: Please enter Course ID");
+                    return;
+                }
+
+                Optional<Course> courseOpt = enrollmentService.getCourseRepository().findById(courseId);
+
+                if (courseOpt.isPresent()) {
+                    Course course = courseOpt.get();
+
+                    // Confirm deletion
+                    int confirm = JOptionPane.showConfirmDialog(
+                            mainFrame,
+                            "Are you sure you want to delete course: " + course.getCourseName() + "?",
+                            "Confirm Deletion",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.WARNING_MESSAGE
+                    );
+
+                    if (confirm == JOptionPane.YES_OPTION) {
+                        boolean success = enrollmentService.deleteCourse(courseId);
+
+                        if (success) {
+                            mainFrame.getCourseView().displayMessage("Course deleted: " + course.getCourseName());
+                            mainFrame.updateStatus("Course deleted");
+
+                            // Clear update fields
+                            mainFrame.getCourseView().getUpdateCourseIdField().setText("");
+                            mainFrame.getCourseView().getUpdateCourseNameField().setText("");
+                            mainFrame.getCourseView().getUpdateInstructorField().setText("");
+                            mainFrame.getCourseView().getUpdateCreditsField().setText("");
+                            mainFrame.getCourseView().getUpdateCapacityField().setText("");
+                            mainFrame.getCourseView().getUpdateDepartmentField().setText("");
+                        } else {
+                            mainFrame.getCourseView().displayMessage("Error: Delete failed");
+                        }
+                    }
+                } else {
+                    mainFrame.getCourseView().displayMessage("Error: Course not found");
+                }
+            });
+
+            // Search Course Button
             mainFrame.getCourseView().getSearchButton().addActionListener(e -> {
                 String courseId = mainFrame.getCourseView().getSearchCourseIdField().getText();
                 courseController.checkCourseAvailability(courseId);
@@ -112,7 +339,10 @@ public class UniversityManagementApp {
                 mainFrame.updateStatus("Course information displayed");
             });
 
-            // Wire up Grade View event handlers
+            // ================================================================
+            // GRADE VIEW EVENT HANDLERS (Keep existing)
+            // ================================================================
+
             mainFrame.getGradeView().getCalculateButton().addActionListener(e -> {
                 try {
                     double score = Double.parseDouble(mainFrame.getGradeView().getScoreField().getText());
@@ -139,7 +369,10 @@ public class UniversityManagementApp {
                 }
             });
 
-            // Wire up Financial View event handlers
+            // ================================================================
+            // FINANCIAL VIEW EVENT HANDLERS (Keep existing)
+            // ================================================================
+
             mainFrame.getFinancialView().getCalculateScholarshipButton().addActionListener(e -> {
                 try {
                     double gpa = Double.parseDouble(mainFrame.getFinancialView().getScholarshipGpaField().getText());

@@ -2,6 +2,7 @@ package edu.university.main.view;
 
 
 
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -11,6 +12,7 @@ public class CourseView extends JPanel {
     private JLabel fillRateLabel;
     private JLabel popularityLabel;
 
+    // Create Course Panel
     private JTextField courseIdField;
     private JTextField courseNameField;
     private JTextField instructorField;
@@ -19,8 +21,20 @@ public class CourseView extends JPanel {
     private JTextField departmentField;
     private JButton createButton;
 
+    // Search Panel
     private JTextField searchCourseIdField;
     private JButton searchButton;
+
+    // Update/Delete Panel (NEW)
+    private JTextField updateCourseIdField;
+    private JTextField updateCourseNameField;
+    private JTextField updateInstructorField;
+    private JTextField updateCreditsField;
+    private JTextField updateCapacityField;
+    private JTextField updateDepartmentField;
+    private JButton updateButton;
+    private JButton deleteButton;
+    private JButton loadCourseButton;
 
     public CourseView() {
         setLayout(new BorderLayout(10, 10));
@@ -28,6 +42,7 @@ public class CourseView extends JPanel {
 
         JPanel topPanel = new JPanel(new BorderLayout());
 
+        // Info Panel
         JPanel infoPanel = new JPanel(new GridLayout(3, 1, 5, 5));
         infoPanel.setBorder(BorderFactory.createTitledBorder("Course Statistics"));
         seatsLabel = new JLabel("Available Seats: N/A");
@@ -42,6 +57,7 @@ public class CourseView extends JPanel {
         infoPanel.add(fillRateLabel);
         infoPanel.add(popularityLabel);
 
+        // Create Course Panel
         JPanel inputPanel = new JPanel(new GridLayout(7, 2, 5, 5));
         inputPanel.setBorder(BorderFactory.createTitledBorder("Create New Course"));
 
@@ -76,6 +92,53 @@ public class CourseView extends JPanel {
         inputPanel.add(new JLabel());
         inputPanel.add(createButton);
 
+        // Update/Delete Course Panel (NEW)
+        JPanel updatePanel = new JPanel(new GridLayout(8, 2, 5, 5));
+        updatePanel.setBorder(BorderFactory.createTitledBorder("Update/Delete Course"));
+
+        updatePanel.add(new JLabel("Course ID:"));
+        JPanel idPanel = new JPanel(new BorderLayout(5, 0));
+        updateCourseIdField = new JTextField();
+        loadCourseButton = new JButton("Load");
+        loadCourseButton.setBackground(new Color(100, 149, 237));
+        loadCourseButton.setForeground(Color.WHITE);
+        idPanel.add(updateCourseIdField, BorderLayout.CENTER);
+        idPanel.add(loadCourseButton, BorderLayout.EAST);
+        updatePanel.add(idPanel);
+
+        updatePanel.add(new JLabel("Course Name:"));
+        updateCourseNameField = new JTextField();
+        updatePanel.add(updateCourseNameField);
+
+        updatePanel.add(new JLabel("Instructor:"));
+        updateInstructorField = new JTextField();
+        updatePanel.add(updateInstructorField);
+
+        updatePanel.add(new JLabel("Credits:"));
+        updateCreditsField = new JTextField();
+        updatePanel.add(updateCreditsField);
+
+        updatePanel.add(new JLabel("Max Capacity:"));
+        updateCapacityField = new JTextField();
+        updatePanel.add(updateCapacityField);
+
+        updatePanel.add(new JLabel("Department:"));
+        updateDepartmentField = new JTextField();
+        updatePanel.add(updateDepartmentField);
+
+        updateButton = new JButton("Update Course");
+        updateButton.setBackground(new Color(255, 165, 0));
+        updateButton.setForeground(Color.WHITE);
+        updateButton.setFont(new Font("Arial", Font.BOLD, 12));
+        updatePanel.add(updateButton);
+
+        deleteButton = new JButton("Delete Course");
+        deleteButton.setBackground(new Color(220, 20, 60));
+        deleteButton.setForeground(Color.WHITE);
+        deleteButton.setFont(new Font("Arial", Font.BOLD, 12));
+        updatePanel.add(deleteButton);
+
+        // Search Panel
         JPanel searchPanel = new JPanel(new GridLayout(2, 2, 5, 5));
         searchPanel.setBorder(BorderFactory.createTitledBorder("Search Course"));
 
@@ -90,14 +153,16 @@ public class CourseView extends JPanel {
         searchPanel.add(new JLabel());
         searchPanel.add(searchButton);
 
-        JPanel formsPanel = new JPanel(new GridLayout(1, 2, 10, 0));
+        // Combine panels
+        JPanel formsPanel = new JPanel(new GridLayout(1, 3, 10, 0));
         formsPanel.add(inputPanel);
+        formsPanel.add(updatePanel);
         formsPanel.add(searchPanel);
 
         topPanel.add(infoPanel, BorderLayout.NORTH);
         topPanel.add(formsPanel, BorderLayout.CENTER);
 
-        messageArea = new JTextArea(12, 50);
+        messageArea = new JTextArea(10, 50);
         messageArea.setEditable(false);
         messageArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
         JScrollPane scrollPane = new JScrollPane(messageArea);
@@ -133,7 +198,7 @@ public class CourseView extends JPanel {
         messageArea.setText("");
     }
 
-    // Getters for form fields
+    // Getters for Create form
     public JTextField getCourseIdField() { return courseIdField; }
     public JTextField getCourseNameField() { return courseNameField; }
     public JTextField getInstructorField() { return instructorField; }
@@ -141,6 +206,19 @@ public class CourseView extends JPanel {
     public JTextField getCapacityField() { return capacityField; }
     public JTextField getDepartmentField() { return departmentField; }
     public JButton getCreateButton() { return createButton; }
+
+    // Getters for Search form
     public JTextField getSearchCourseIdField() { return searchCourseIdField; }
     public JButton getSearchButton() { return searchButton; }
+
+    // Getters for Update/Delete form (NEW)
+    public JTextField getUpdateCourseIdField() { return updateCourseIdField; }
+    public JTextField getUpdateCourseNameField() { return updateCourseNameField; }
+    public JTextField getUpdateInstructorField() { return updateInstructorField; }
+    public JTextField getUpdateCreditsField() { return updateCreditsField; }
+    public JTextField getUpdateCapacityField() { return updateCapacityField; }
+    public JTextField getUpdateDepartmentField() { return updateDepartmentField; }
+    public JButton getUpdateButton() { return updateButton; }
+    public JButton getDeleteButton() { return deleteButton; }
+    public JButton getLoadCourseButton() { return loadCourseButton; }
 }
