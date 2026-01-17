@@ -1,5 +1,6 @@
-package edu.university.main.model;
+package BVT;
 
+import edu.university.main.model.Student;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

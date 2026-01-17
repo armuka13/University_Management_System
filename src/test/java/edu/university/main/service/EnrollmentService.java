@@ -19,6 +19,10 @@ public class EnrollmentService {
         this.courseRepository = courseRepository;
     }
 
+    public EnrollmentService() {
+
+    }
+
     public boolean enrollStudent(String studentId, String courseId) {
         Optional<Student> studentOpt = studentRepository.findById(studentId);
         Optional<Course> courseOpt = courseRepository.findById(courseId);

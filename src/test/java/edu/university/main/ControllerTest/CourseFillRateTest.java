@@ -1,6 +1,7 @@
-package edu.university.main.model;
+package edu.university.main.controller;
 
-import org.testng.annotations.Test;
+import edu.university.main.model.Course;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
