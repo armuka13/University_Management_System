@@ -1,4 +1,4 @@
-package Tests.ECT;
+package ECT;
 
 import edu.university.main.service.FinancialService;
 import org.junit.jupiter.api.Test;

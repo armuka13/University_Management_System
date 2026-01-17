@@ -1,4 +1,4 @@
-package Tests.BVT;
+package BVT;
 
 import edu.university.main.service.FinancialService;
 import org.junit.jupiter.api.Test;

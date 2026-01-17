@@ -1,4 +1,4 @@
-package Tests.CT;
+package CT;
 
 import edu.university.main.model.Grade;
 import org.junit.jupiter.api.Test;
