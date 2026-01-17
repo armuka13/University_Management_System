@@ -1,5 +1,6 @@
-package edu.university.main.service;
+package Tests.BVT;
 
+import edu.university.main.service.FinancialService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

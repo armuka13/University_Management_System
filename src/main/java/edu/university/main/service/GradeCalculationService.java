@@ -27,7 +27,7 @@ public class GradeCalculationService {
         }
 
         double average = sum / validScores;
-        return Math.round(average * 100.0) / 100.0;
+        return Math.round(average * 100.0);
     }
 
     public double calculateWeightedAverage(List<Double> scores, List<Double> weights) {
