@@ -1,5 +1,6 @@
-package edu.university.main.model;
+package BVT;
 
+import edu.university.main.model.Grade;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
