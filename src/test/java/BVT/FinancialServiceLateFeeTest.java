@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FinancialServiceLateFeeTest {
+public class FinancialServiceLateFeeTest {
 
     FinancialService service = new FinancialService();
 
-    @Test
+    @org.junit.Test
     public void invalidNegativeDays() {
         assertEquals(-1.0, service.applyLateFee(100.0, -1), 0.01);
     }
