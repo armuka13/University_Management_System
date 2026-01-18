@@ -1,5 +1,6 @@
 package edu.university.main;
 
+import edu.university.main.model.Student;
 import edu.university.main.controller.*;
 import edu.university.main.service.*;
 import edu.university.main.view.*;
