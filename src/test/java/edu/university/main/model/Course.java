@@ -181,5 +181,14 @@ public class Course {
     public String getDeliveryMode() { return deliveryMode; }
     public void setDeliveryMode(String deliveryMode) { this.deliveryMode = deliveryMode; }
 
+    public int getAvailableSeats() {
+        return calculateAvailableSeats();
+    }
+    public double getFillRate() {
+        return calculateFillRate();
+    }
+    public String getPopularityStatus() {
+        return determineCoursePopularity();
+    }
 
 }

@@ -2,7 +2,13 @@ package edu.university.main.service;
 
 
 
+import edu.university.main.model.Grade;
+import edu.university.main.model.Student;
+import edu.university.main.repository.GradeRepository;
+
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class GradeCalculationService {
 
@@ -214,4 +220,5 @@ public class GradeCalculationService {
         double average = sum / count;
         return Math.round(average * 100.0) / 100.0;
     }
+
 }

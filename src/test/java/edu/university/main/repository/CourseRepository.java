@@ -159,4 +159,14 @@ public class CourseRepository {
                 .filter(c -> c.getCourseName().toLowerCase().contains(namePattern.toLowerCase()))
                 .collect(Collectors.toList());
     }
+
+    public Course findCourseById(String id) {
+        return findById(id).orElse(null);
+    }
+    public int getCourseCount() {
+        return count();
+    }
+    public void addCourse(Course c) {
+        save(c);
+    }
 }

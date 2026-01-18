@@ -302,4 +302,11 @@ public class Student {
     public void setInternational(boolean international) { isInternational = international; }
     public String getResidencyStatus() { return residencyStatus; }
     public void setResidencyStatus(String residencyStatus) { this.residencyStatus = residencyStatus; }
+
+    public List<String> getEnrolledCourses() {
+        return enrolledCourseIds;
+    }
+    public int getEnrolledCredits() {
+        return creditHours;
+    }
 }

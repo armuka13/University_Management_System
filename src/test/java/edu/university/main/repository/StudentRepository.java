@@ -140,4 +140,15 @@ public class StudentRepository {
                 .filter(s -> s.getName().toLowerCase().contains(namePattern.toLowerCase()))
                 .collect(Collectors.toList());
     }
+
+    public Student findStudentById(String id) {
+        return findById(id).orElse(null);
+    }
+    public int getStudentCount() {
+        return count();
+    }
+    public void addStudent(Student s) {
+        save(s);
+    }
+
 }

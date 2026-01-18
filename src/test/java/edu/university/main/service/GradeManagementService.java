@@ -5,7 +5,7 @@ import edu.university.main.repository.GradeRepository;
 import java.util.List;
 
 public class GradeManagementService {
-    private GradeRepository gradeRepository;
+    private static GradeRepository gradeRepository;
 
     public GradeManagementService(GradeRepository gradeRepository) {
         this.gradeRepository = gradeRepository;
