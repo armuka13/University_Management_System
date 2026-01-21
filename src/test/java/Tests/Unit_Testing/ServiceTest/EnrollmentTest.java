@@ -27,7 +27,7 @@ class EnrollmentTest {
 
     @Test
     void testEnrollStudentSuccess() {
-        Student student = new Student("S001", "John", "john@test.com", 20, "CS");
+        Student student = new Student("S001", "Arlin", "Arlin@test.com", 20, "CS");
         student.setGpa(3.5);
         student.setCreditHours(12);
         studentRepository.save(student);
@@ -54,7 +54,7 @@ class EnrollmentTest {
 
     @Test
     void testEnrollStudentCourseNotFound() {
-        Student student = new Student("S001", "John", "john@test.com", 20, "CS");
+        Student student = new Student("S001", "Arlin", "Arlin@test.com", 20, "CS");
         studentRepository.save(student);
 
         boolean result = service.enrollStudent("S001", "CS999");
@@ -64,7 +64,7 @@ class EnrollmentTest {
 
     @Test
     void testEnrollStudentCourseFull() {
-        Student student = new Student("S001", "John", "john@test.com", 20, "CS");
+        Student student = new Student("S001", "Arlin", "Arlin@test.com", 20, "CS");
         student.setGpa(3.5);
         studentRepository.save(student);
 
@@ -79,7 +79,7 @@ class EnrollmentTest {
 
     @Test
     void testEnrollStudentCannotEnroll() {
-        Student student = new Student("S001", "John", "john@test.com", 20, "CS");
+        Student student = new Student("S001", "Arlin", "Arlin@test.com", 20, "CS");
         student.setGpa(1.5);
         student.setCreditHours(15);
         studentRepository.save(student);
@@ -94,7 +94,7 @@ class EnrollmentTest {
 
     @Test
     void testDropCourseSuccess() {
-        Student student = new Student("S001", "John", "john@test.com", 20, "CS");
+        Student student = new Student("S001", "Arlin", "Arlin@test.com", 20, "CS");
         student.setCreditHours(15);
         student.getEnrolledCourseIds().add("CS101");
         studentRepository.save(student);
@@ -114,7 +114,7 @@ class EnrollmentTest {
 
     @Test
     void testDropCourseNotEnrolled() {
-        Student student = new Student("S001", "John", "john@test.com", 20, "CS");
+        Student student = new Student("S001", "Arlin", "Arlin@test.com", 20, "CS");
         studentRepository.save(student);
 
         Course course = new Course("CS101", "Intro to CS", "Dr. Smith", 3, 30, "CS");

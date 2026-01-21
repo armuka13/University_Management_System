@@ -123,7 +123,7 @@ class GradeViewTest {
         JLabel honorsLabel = (JLabel) honorsLabelField.get(gradeView);
 
         gradeView.displayHonorsLevel("SUMMA_CUM_LAUDE");
-        assertTrue(honorsLabel.getText().contains("SUMMA CUM LAUDE"));
+        assertTrue(honorsLabel.getText().contains("With High Honors"));
     }
 
     @Test

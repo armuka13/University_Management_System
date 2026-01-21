@@ -15,7 +15,7 @@ class StudentTest {
 
     @BeforeEach
     void setUp() {
-        student = new Student("S001", "John Doe", "john@test.com", 20, "Computer Science");
+        student = new Student("S001", "ArlinB", "Arlin@test.com", 20, "Computer Science");
     }
 
     @Test
@@ -453,8 +453,8 @@ class StudentTest {
 
     @Test
     void testGettersAndSetters() {
-        student.setName("Jane Doe");
-        student.setEmail("jane@test.com");
+        student.setName("EglisB");
+        student.setEmail("Eglis@test.com");
         student.setAge(21);
         student.setMajor("Mathematics");
         student.setGpa(3.75);
@@ -464,8 +464,8 @@ class StudentTest {
         student.setResidencyStatus("OUT_OF_STATE");
 
         assertEquals("S001", student.getStudentId());
-        assertEquals("Jane Doe", student.getName());
-        assertEquals("jane@test.com", student.getEmail());
+        assertEquals("EglisB", student.getName());
+        assertEquals("Eglis@test.com", student.getEmail());
         assertEquals(21, student.getAge());
         assertEquals("Mathematics", student.getMajor());
         assertEquals(3.75, student.getGpa());

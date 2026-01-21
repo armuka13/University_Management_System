@@ -19,7 +19,7 @@ public class StudentManagementServiceIntegrationTest {
         StudentRepository studentRepository = new StudentRepository();
         StudentManagementService studentManagementService = new StudentManagementService(studentRepository);
 
-        boolean created = studentManagementService.createStudent("S001", "Alice Johnson", "alice@edu.com", 20, "CS");
+        boolean created = studentManagementService.createStudent("S001", "Alice Benson", "alice@edu.com", 20, "CS");
 
         assertTrue(created);
         assertTrue(studentRepository.exists("S001"));
@@ -71,7 +71,7 @@ public class StudentManagementServiceIntegrationTest {
         StudentManagementService studentManagementService = new StudentManagementService(studentRepository);
 
         studentManagementService.createStudent("S001", "Alice", "alice@edu.com", 20, "CS");
-        boolean created = studentManagementService.createStudent("S001", "Bob", "bob@edu.com", 21, "CS");
+        boolean created = studentManagementService.createStudent("S001", "Arjan", "Arjan@edu.com", 21, "CS");
 
         assertFalse(created);
     }
@@ -82,7 +82,7 @@ public class StudentManagementServiceIntegrationTest {
         StudentManagementService studentManagementService = new StudentManagementService(studentRepository);
 
         boolean created1 = studentManagementService.createStudent("S001", "Alice", "alice@edu.com", 20, "CS");
-        boolean created2 = studentManagementService.createStudent("S002", "Bob", "bob@edu.com", 21, "CS");
+        boolean created2 = studentManagementService.createStudent("S002", "Arjan", "Arjan@edu.com", 21, "CS");
         boolean created3 = studentManagementService.createStudent("S003", "Charlie", "charlie@edu.com", 22, "CS");
 
         assertTrue(created1);
@@ -123,7 +123,7 @@ public class StudentManagementServiceIntegrationTest {
         StudentManagementService studentManagementService = new StudentManagementService(studentRepository);
 
         studentManagementService.createStudent("S001", "Alice", "alice@edu.com", 20, "CS");
-        studentManagementService.createStudent("S002", "Bob", "bob@edu.com", 21, "CS");
+        studentManagementService.createStudent("S002", "Arjan", "Arjan@edu.com", 21, "CS");
         studentManagementService.createStudent("S003", "Charlie", "charlie@edu.com", 22, "CS");
 
         List<Student> students = studentManagementService.getAllStudents();
@@ -147,7 +147,7 @@ public class StudentManagementServiceIntegrationTest {
         StudentManagementService studentManagementService = new StudentManagementService(studentRepository);
 
         studentManagementService.createStudent("S001", "Alice", "alice@edu.com", 20, "CS");
-        studentManagementService.createStudent("S002", "Bob", "bob@edu.com", 21, "CS");
+        studentManagementService.createStudent("S002", "Arjan", "Arjan@edu.com", 21, "CS");
         studentManagementService.createStudent("S003", "Charlie", "charlie@edu.com", 22, "MATH");
 
         List<Student> csStudents = studentManagementService.getStudentsByMajor("CS");
@@ -174,7 +174,7 @@ public class StudentManagementServiceIntegrationTest {
         StudentManagementService studentManagementService = new StudentManagementService(studentRepository);
 
         studentManagementService.createStudent("S001", "Alice Smith", "alice@edu.com", 20, "CS");
-        studentManagementService.createStudent("S002", "Bob Johnson", "bob@edu.com", 21, "CS");
+        studentManagementService.createStudent("S002", "Arjan M", "Arjan@edu.com", 21, "CS");
         studentManagementService.createStudent("S003", "Charlie Smith", "charlie@edu.com", 22, "CS");
 
         List<Student> results = studentManagementService.searchStudentsByName("Smith");
@@ -338,7 +338,7 @@ public class StudentManagementServiceIntegrationTest {
         StudentManagementService studentManagementService = new StudentManagementService(studentRepository);
 
         studentManagementService.createStudent("S001", "Alice", "alice@edu.com", 20, "CS");
-        studentManagementService.createStudent("S002", "Bob", "bob@edu.com", 21, "CS");
+        studentManagementService.createStudent("S002", "Arjan", "Arjan@edu.com", 21, "CS");
         studentManagementService.createStudent("S003", "Charlie", "charlie@edu.com", 22, "MATH");
 
         int deleted = studentManagementService.deleteStudentsByMajor("CS");
@@ -367,7 +367,7 @@ public class StudentManagementServiceIntegrationTest {
         StudentManagementService studentManagementService = new StudentManagementService(studentRepository);
 
         studentManagementService.createStudent("S001", "Alice", "alice@edu.com", 20, "CS");
-        studentManagementService.createStudent("S002", "Bob", "bob@edu.com", 21, "CS");
+        studentManagementService.createStudent("S002", "Arjan", "Arjan@edu.com", 21, "CS");
 
         int total = studentManagementService.getTotalStudents();
 
@@ -394,7 +394,7 @@ public class StudentManagementServiceIntegrationTest {
         s1.setGpa(3.5);
         studentManagementService.updateStudent(s1);
 
-        studentManagementService.createStudent("S002", "Bob", "bob@edu.com", 21, "CS");
+        studentManagementService.createStudent("S002", "Arjan", "Arjan@edu.com", 21, "CS");
         Student s2 = studentManagementService.getStudent("S002").get();
         s2.setGpa(3.0);
         studentManagementService.updateStudent(s2);

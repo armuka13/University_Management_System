@@ -22,12 +22,12 @@ class FacultyRepositoryTest {
     void setUp() {
         repository = new FacultyRepository();
 
-        faculty1 = new Faculty("F001", "Dr. John Smith", "john.smith@university.edu",  "Computer Science", "Professor", 95000);
+        faculty1 = new Faculty("F001", "Dr. Arlin Smith", "Arlin.smith@university.edu",  "Computer Science", "Professor", 95000);
 
-        faculty2 = new Faculty("F002", "Dr. Jane Doe", "jane.doe@university.edu",
+        faculty2 = new Faculty("F002", "Dr. EglisB", "Eglis.doe@university.edu",
                  "Mathematics", "Associate Professor", 75000);
 
-        faculty3 = new Faculty("F003", "Dr. Bob Johnson", "bob.johnson@university.edu",
+        faculty3 = new Faculty("F003", "Dr. Arjan M", "Arjan.JohnsonArlinson@university.edu",
                  "Computer Science", "Assistant Professor", 65000);
     }
 
@@ -82,7 +82,7 @@ class FacultyRepositoryTest {
         Optional<Faculty> found = repository.findById("F001");
 
         assertTrue(found.isPresent());
-        assertEquals("Dr. John Smith", found.get().getName());
+        assertEquals("Dr. Arlin Smith", found.get().getName());
     }
 
     @Test
@@ -195,7 +195,7 @@ class FacultyRepositoryTest {
 
         List<Faculty> faculty = repository.findBySalaryRange(70000, 80000);
         assertEquals(1, faculty.size());
-        assertEquals("Dr. Jane Doe", faculty.get(0).getName());
+        assertEquals("Dr. EglisB", faculty.get(0).getName());
     }
 
     @Test
@@ -401,8 +401,8 @@ class FacultyRepositoryTest {
         repository.save(faculty2);
         repository.save(faculty3);
 
-        List<Faculty> results = repository.searchByName("John");
-        assertEquals(2, results.size()); // John Smith and Bob Johnson
+        List<Faculty> results = repository.searchByName("Arlin");
+        assertEquals(2, results.size()); // Arlin Smith and Arjan M
     }
 
     @Test
@@ -410,7 +410,7 @@ class FacultyRepositoryTest {
     void testSearchByNameCaseInsensitive() {
         repository.save(faculty1);
 
-        List<Faculty> results = repository.searchByName("JOHN");
+        List<Faculty> results = repository.searchByName("Arlin");
         assertEquals(1, results.size());
     }
 

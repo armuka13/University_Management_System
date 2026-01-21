@@ -269,7 +269,7 @@ class FacultyTest {
     @Test
     void testGettersAndSetters() {
         faculty.setName("Dr. Johnson");
-        faculty.setEmail("johnson@university.edu");
+        faculty.setEmail("JohnsonArlinson@university.edu");
         faculty.setDepartment("Mathematics");
         faculty.setRank("ASSOCIATE_PROFESSOR");
         faculty.setSalary(90000.0);
@@ -279,7 +279,7 @@ class FacultyTest {
 
         assertEquals("F001", faculty.getFacultyId());
         assertEquals("Dr. Johnson", faculty.getName());
-        assertEquals("johnson@university.edu", faculty.getEmail());
+        assertEquals("JohnsonArlinson@university.edu", faculty.getEmail());
         assertEquals("Mathematics", faculty.getDepartment());
         assertEquals("ASSOCIATE_PROFESSOR", faculty.getRank());
         assertEquals(90000.0, faculty.getSalary());

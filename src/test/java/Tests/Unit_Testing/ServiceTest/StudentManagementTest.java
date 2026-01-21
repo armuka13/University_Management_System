@@ -23,7 +23,7 @@ class StudentManagementTest {
 
     @Test
     void testCreateStudentSuccess() {
-        boolean result = service.createStudent("S001", "John Doe", "john@test.com", 20, "CS");
+        boolean result = service.createStudent("S001", "ArlinB", "Arlin@test.com", 20, "CS");
 
         assertTrue(result);
         assertTrue(repository.exists("S001"));
@@ -31,43 +31,43 @@ class StudentManagementTest {
 
     @Test
     void testCreateStudentNullId() {
-        boolean result = service.createStudent(null, "John Doe", "john@test.com", 20, "CS");
+        boolean result = service.createStudent(null, "ArlinB", "Arlin@test.com", 20, "CS");
 
         assertFalse(result);
     }
 
     @Test
     void testCreateStudentEmptyId() {
-        boolean result = service.createStudent("", "John Doe", "john@test.com", 20, "CS");
+        boolean result = service.createStudent("", "ArlinB", "Arlin@test.com", 20, "CS");
 
         assertFalse(result);
     }
 
     @Test
     void testCreateStudentNullName() {
-        boolean result = service.createStudent("S001", null, "john@test.com", 20, "CS");
+        boolean result = service.createStudent("S001", null, "Arlin@test.com", 20, "CS");
 
         assertFalse(result);
     }
 
     @Test
     void testCreateStudentAlreadyExists() {
-        repository.save(new Student("S001", "Jane", "jane@test.com", 21, "Math"));
+        repository.save(new Student("S001", "Eglis", "Eglis@test.com", 21, "Math"));
 
-        boolean result = service.createStudent("S001", "John Doe", "john@test.com", 20, "CS");
+        boolean result = service.createStudent("S001", "ArlinB", "Arlin@test.com", 20, "CS");
 
         assertFalse(result);
     }
 
     @Test
     void testGetStudentExists() {
-        Student student = new Student("S001", "John", "john@test.com", 20, "CS");
+        Student student = new Student("S001", "Arlin", "Arlin@test.com", 20, "CS");
         repository.save(student);
 
         Optional<Student> result = service.getStudent("S001");
 
         assertTrue(result.isPresent());
-        assertEquals("John", result.get().getName());
+        assertEquals("Arlin", result.get().getName());
     }
 
     @Test
@@ -79,8 +79,8 @@ class StudentManagementTest {
 
     @Test
     void testGetAllStudents() {
-        repository.save(new Student("S001", "John", "john@test.com", 20, "CS"));
-        repository.save(new Student("S002", "Jane", "jane@test.com", 21, "Math"));
+        repository.save(new Student("S001", "Arlin", "Arlin@test.com", 20, "CS"));
+        repository.save(new Student("S002", "Eglis", "Eglis@test.com", 21, "Math"));
 
         List<Student> students = service.getAllStudents();
 
@@ -89,9 +89,9 @@ class StudentManagementTest {
 
     @Test
     void testGetStudentsByMajor() {
-        repository.save(new Student("S001", "John", "john@test.com", 20, "CS"));
-        repository.save(new Student("S002", "Jane", "jane@test.com", 21, "CS"));
-        repository.save(new Student("S003", "Bob", "bob@test.com", 22, "Math"));
+        repository.save(new Student("S001", "Arlin", "Arlin@test.com", 20, "CS"));
+        repository.save(new Student("S002", "Eglis", "Eglis@test.com", 21, "CS"));
+        repository.save(new Student("S003", "Arjan", "Arjan@test.com", 22, "Math"));
 
         List<Student> csStudents = service.getStudentsByMajor("CS");
 
@@ -100,25 +100,25 @@ class StudentManagementTest {
 
     @Test
     void testSearchStudentsByName() {
-        repository.save(new Student("S001", "John Doe", "john@test.com", 20, "CS"));
-        repository.save(new Student("S002", "Jane Doe", "jane@test.com", 21, "Math"));
-        repository.save(new Student("S003", "Bob Smith", "bob@test.com", 22, "CS"));
+        repository.save(new Student("S001", "ArlinB", "Arlin@test.com", 20, "CS"));
+        repository.save(new Student("S002", "EglisB", "Eglis@test.com", 21, "Math"));
+        repository.save(new Student("S003", "ArjanM", "Arjan@test.com", 22, "CS"));
 
-        List<Student> results = service.searchStudentsByName("Doe");
+        List<Student> results = service.searchStudentsByName("B");
 
         assertEquals(2, results.size());
     }
 
     @Test
     void testUpdateStudentSuccess() {
-        Student student = new Student("S001", "John", "john@test.com", 20, "CS");
+        Student student = new Student("S001", "Arlin", "Arlin@test.com", 20, "CS");
         repository.save(student);
-        student.setName("John Updated");
+        student.setName("Arlin Updated");
 
         boolean result = service.updateStudent(student);
 
         assertTrue(result);
-        assertEquals("John Updated", repository.findById("S001").get().getName());
+        assertEquals("Arlin Updated", repository.findById("S001").get().getName());
     }
 
     @Test
@@ -130,7 +130,7 @@ class StudentManagementTest {
 
     @Test
     void testUpdateStudentNotExists() {
-        Student student = new Student("S999", "John", "john@test.com", 20, "CS");
+        Student student = new Student("S999", "Arlin", "Arlin@test.com", 20, "CS");
 
         boolean result = service.updateStudent(student);
 
@@ -139,7 +139,7 @@ class StudentManagementTest {
 
     @Test
     void testUpdateStudentEmailSuccess() {
-        repository.save(new Student("S001", "John", "john@test.com", 20, "CS"));
+        repository.save(new Student("S001", "Arlin", "Arlin@test.com", 20, "CS"));
 
         boolean result = service.updateStudentEmail("S001", "newemail@test.com");
 
@@ -156,7 +156,7 @@ class StudentManagementTest {
 
     @Test
     void testUpdateStudentGPASuccess() {
-        repository.save(new Student("S001", "John", "john@test.com", 20, "CS"));
+        repository.save(new Student("S001", "Arlin", "Arlin@test.com", 20, "CS"));
 
         boolean result = service.updateStudentGPA("S001", 3.75);
 
@@ -166,7 +166,7 @@ class StudentManagementTest {
 
     @Test
     void testUpdateStudentGPAInvalidLow() {
-        repository.save(new Student("S001", "John", "john@test.com", 20, "CS"));
+        repository.save(new Student("S001", "Arlin", "Arlin@test.com", 20, "CS"));
 
         boolean result = service.updateStudentGPA("S001", -0.5);
 
@@ -175,7 +175,7 @@ class StudentManagementTest {
 
     @Test
     void testUpdateStudentGPAInvalidHigh() {
-        repository.save(new Student("S001", "John", "john@test.com", 20, "CS"));
+        repository.save(new Student("S001", "Arlin", "Arlin@test.com", 20, "CS"));
 
         boolean result = service.updateStudentGPA("S001", 5.0);
 
@@ -191,7 +191,7 @@ class StudentManagementTest {
 
     @Test
     void testDeleteStudentSuccess() {
-        repository.save(new Student("S001", "John", "john@test.com", 20, "CS"));
+        repository.save(new Student("S001", "Arlin", "Arlin@test.com", 20, "CS"));
 
         boolean result = service.deleteStudent("S001");
 
@@ -208,9 +208,9 @@ class StudentManagementTest {
 
     @Test
     void testDeleteStudentsByMajor() {
-        repository.save(new Student("S001", "John", "john@test.com", 20, "CS"));
-        repository.save(new Student("S002", "Jane", "jane@test.com", 21, "CS"));
-        repository.save(new Student("S003", "Bob", "bob@test.com", 22, "Math"));
+        repository.save(new Student("S001", "Arlin", "Arlin@test.com", 20, "CS"));
+        repository.save(new Student("S002", "Eglis", "Eglis@test.com", 21, "CS"));
+        repository.save(new Student("S003", "Arjan", "Arjan@test.com", 22, "Math"));
 
         int deleted = service.deleteStudentsByMajor("CS");
 
@@ -220,7 +220,7 @@ class StudentManagementTest {
 
     @Test
     void testDeleteStudentsByMajorNoneFound() {
-        repository.save(new Student("S001", "John", "john@test.com", 20, "CS"));
+        repository.save(new Student("S001", "Arlin", "Arlin@test.com", 20, "CS"));
 
         int deleted = service.deleteStudentsByMajor("Math");
 
@@ -229,8 +229,8 @@ class StudentManagementTest {
 
     @Test
     void testGetTotalStudents() {
-        repository.save(new Student("S001", "John", "john@test.com", 20, "CS"));
-        repository.save(new Student("S002", "Jane", "jane@test.com", 21, "Math"));
+        repository.save(new Student("S001", "Arlin", "Arlin@test.com", 20, "CS"));
+        repository.save(new Student("S002", "Eglis", "Eglis@test.com", 21, "Math"));
 
         int total = service.getTotalStudents();
 
@@ -239,9 +239,9 @@ class StudentManagementTest {
 
     @Test
     void testGetAverageGPA() {
-        Student s1 = new Student("S001", "John", "john@test.com", 20, "CS");
+        Student s1 = new Student("S001", "Arlin", "Arlin@test.com", 20, "CS");
         s1.setGpa(3.5);
-        Student s2 = new Student("S002", "Jane", "jane@test.com", 21, "Math");
+        Student s2 = new Student("S002", "Eglis", "Eglis@test.com", 21, "Math");
         s2.setGpa(3.7);
         repository.save(s1);
         repository.save(s2);
@@ -253,7 +253,7 @@ class StudentManagementTest {
 
     @Test
     void testHasStudentsTrue() {
-        repository.save(new Student("S001", "John", "john@test.com", 20, "CS"));
+        repository.save(new Student("S001", "Arlin", "Arlin@test.com", 20, "CS"));
 
         boolean hasStudents = service.hasStudents();
 

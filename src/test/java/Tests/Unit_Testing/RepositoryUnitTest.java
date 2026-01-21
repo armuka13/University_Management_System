@@ -62,7 +62,7 @@ public class RepositoryUnitTest {
     @Test
     void testFindStudentsByGpaRange() {
         StudentRepository studentRepository = new StudentRepositoryStub();
-        Student student1 = new Student("S001", "John", "john@edu.com", 20, "SWE");
+        Student student1 = new Student("S001", "Arlin", "Arlin@edu.com", 20, "SWE");
         student1.setGpa(3.5);
 
         studentRepository.save(student1);
@@ -90,7 +90,7 @@ public class RepositoryUnitTest {
     @Test
     void testUpdateStudent() {
         StudentRepository studentRepository = new StudentRepositoryStub();
-        Student student = new Student("S001", "John", "john@edu.com", 20, "SWE");
+        Student student = new Student("S001", "Arlin", "Arlin@edu.com", 20, "SWE");
         studentRepository.save(student);
 
         student.setGpa(3.8);
@@ -102,7 +102,7 @@ public class RepositoryUnitTest {
     @Test
     void testDeleteStudent() {
         StudentRepository studentRepository = new StudentRepositoryStub();
-        Student student = new Student("S001", "John", "john@edu.com", 20, "SWE");
+        Student student = new Student("S001", "Arlin", "Arlin@edu.com", 20, "SWE");
         studentRepository.save(student);
 
         boolean deleted = studentRepository.delete("S001");

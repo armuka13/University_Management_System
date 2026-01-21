@@ -17,7 +17,7 @@ public class StudentEnrollmentSystemTest extends BaseSystemTest {
          Student student = new Student("S001", "Eglis Braho", "eglis@university.edu", 20, "Computer Science");
 
         studentRepo.addStudent(student);
-        System.out.println(" Step 7: Student created successfully: John Doe");
+        System.out.println(" Step 7: Student created successfully: ArlinB");
 
         assertEquals(1, studentRepo.getStudentCount(), "Student count should increase to 1");
         assertNotNull(studentRepo.findStudentById("S001"), "Student S001 should exist in system");

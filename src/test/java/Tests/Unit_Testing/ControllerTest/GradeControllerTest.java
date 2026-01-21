@@ -105,22 +105,22 @@ class GradeControllerTest {
 
     @Test
     void testDetermineHonorsLevelSumma() {
-        gradeService.setHonorsLevelToReturn("Summa Cum Laude");
+        gradeService.setHonorsLevelToReturn("With High Honors");
 
         controller.determineHonorsLevel(3.9, 120);
 
         assertEquals(3.9, gradeService.getGpaForHonorsLevel());
         assertEquals(120, gradeService.getCreditsForHonorsLevel());
-        assertEquals("Summa Cum Laude", view.getHonorsLevelDisplayed());
+        assertEquals("With High Honors", view.getHonorsLevelDisplayed());
     }
 
     @Test
     void testDetermineHonorsLevelMagna() {
-        gradeService.setHonorsLevelToReturn("Magna Cum Laude");
+        gradeService.setHonorsLevelToReturn("With Honors");
 
         controller.determineHonorsLevel(3.7, 120);
 
-        assertEquals("Magna Cum Laude", view.getHonorsLevelDisplayed());
+        assertEquals("With Honors", view.getHonorsLevelDisplayed());
     }
 
     @Test

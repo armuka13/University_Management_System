@@ -35,10 +35,10 @@ class StudentControllerTest {
 
     @Test
     void testCreateStudent() {
-        controller.createStudent("S001", "John Doe", "john@university.edu", 20, "Computer Science");
+        controller.createStudent("S001", "ArlinB", "Arlin@university.edu", 20, "Computer Science");
 
         assertTrue(enrollmentService.isStudentAdded());
-        assertEquals("Student created successfully: John Doe", view.getLastMessage());
+        assertEquals("Student created successfully: ArlinB", view.getLastMessage());
     }
 
     @Test
@@ -66,7 +66,7 @@ class StudentControllerTest {
         List<Double> grades = Arrays.asList(3.5, 4.0, 3.7);
         List<Integer> credits = Arrays.asList(3, 4, 3);
 
-        FakeStudent student = new FakeStudent("S001", "John", "john@test.com", 20, "CS");
+        FakeStudent student = new FakeStudent("S001", "Arlin", "Arlin@test.com", 20, "CS");
         student.setGpaToReturn(3.75);
         studentRepository.addStudent(student);
 
@@ -93,7 +93,7 @@ class StudentControllerTest {
         List<Double> grades = Arrays.asList(3.5, 4.0);
         List<Integer> credits = Arrays.asList(3, 4);
 
-        FakeStudent student = new FakeStudent("S001", "John", "john@test.com", 20, "CS");
+        FakeStudent student = new FakeStudent("S001", "Arlin", "Arlin@test.com", 20, "CS");
         student.setGpaToReturn(-1.0);
         studentRepository.addStudent(student);
 
@@ -105,7 +105,7 @@ class StudentControllerTest {
 
     @Test
     void testCheckAcademicStandingSuccess() {
-        FakeStudent student = new FakeStudent("S001", "John", "john@test.com", 20, "CS");
+        FakeStudent student = new FakeStudent("S001", "Arlin", "Arlin@test.com", 20, "CS");
         student.setGpa(3.5);
         student.setCreditHours(60);
         student.setAcademicStandingToReturn("Good Standing");
@@ -126,7 +126,7 @@ class StudentControllerTest {
 
     @Test
     void testCalculateTuitionInStateWithScholarship() {
-        FakeStudent student = new FakeStudent("S001", "John", "john@test.com", 20, "CS");
+        FakeStudent student = new FakeStudent("S001", "Arlin", "Arlin@test.com", 20, "CS");
         student.setCreditHours(15);
         student.setTuitionToReturn(5000.0);
         studentRepository.addStudent(student);
@@ -138,7 +138,7 @@ class StudentControllerTest {
 
     @Test
     void testCalculateTuitionOutOfStateNoScholarship() {
-        FakeStudent student = new FakeStudent("S001", "John", "john@test.com", 20, "CS");
+        FakeStudent student = new FakeStudent("S001", "Arlin", "Arlin@test.com", 20, "CS");
         student.setCreditHours(12);
         student.setTuitionToReturn(15000.0);
         studentRepository.addStudent(student);

@@ -22,15 +22,15 @@ class StudentRepositoryTest {
     void setUp() {
         repository = new StudentRepository();
 
-        student1 = new Student("S001", "John Doe", "john@university.edu", 20, "Computer Science");
+        student1 = new Student("S001", "ArlinB", "Arlin@university.edu", 20, "Computer Science");
         student1.setGpa(3.5);
         student1.setCreditHours(60);
 
-        student2 = new Student("S002", "Jane Smith", "jane@university.edu", 21, "Mathematics");
+        student2 = new Student("S002", "Eglis B", "Eglis@university.edu", 21, "Mathematics");
         student2.setGpa(3.8);
         student2.setCreditHours(75);
 
-        student3 = new Student("S003", "Bob Johnson", "bob@university.edu", 19, "Computer Science");
+        student3 = new Student("S003", "Arjan M", "Arjan@university.edu", 19, "Computer Science");
         student3.setGpa(2.9);
         student3.setCreditHours(45);
     }
@@ -86,7 +86,7 @@ class StudentRepositoryTest {
         Optional<Student> found = repository.findById("S001");
 
         assertTrue(found.isPresent());
-        assertEquals("John Doe", found.get().getName());
+        assertEquals("ArlinB", found.get().getName());
     }
 
     @Test
@@ -372,8 +372,8 @@ class StudentRepositoryTest {
         repository.save(student2);
         repository.save(student3);
 
-        List<Student> results = repository.searchByName("John");
-        assertEquals(2, results.size()); // John Doe and Bob Johnson
+        List<Student> results = repository.searchByName("Arlin");
+        assertEquals(2, results.size()); // ArlinB and Arjan M
     }
 
     @Test
@@ -381,7 +381,7 @@ class StudentRepositoryTest {
     void testSearchByNameCaseInsensitive() {
         repository.save(student1);
 
-        List<Student> results = repository.searchByName("JOHN");
+        List<Student> results = repository.searchByName("Arlin");
         assertEquals(1, results.size());
     }
 
