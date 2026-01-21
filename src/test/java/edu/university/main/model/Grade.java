@@ -153,7 +153,7 @@ public class Grade {
         }
 
         double bonusToApply = Math.min(extraCreditPoints, maxExtraCredit);
-        double finalScore = baseScore + bonusToApply;
+        double  finalScore = baseScore + bonusToApply;
 
         if (finalScore > 100.0) {
             finalScore = 100.0;
