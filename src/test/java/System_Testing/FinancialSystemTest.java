@@ -17,7 +17,7 @@ public class FinancialSystemTest extends BaseSystemTest{
         System.out.println(" Step 1: Financial tab displayed");
 
 
-        Student student = new Student("S005", "Bob Wilson", "bob@edu.edu", 19, "Engineering");
+        Student student = new Student("S005", "Eglis Braho", "Eglis@edu.edu", 19, "Engineering");
         student.setGpa(3.8);
         student.setCreditHours(15);
         studentRepo.addStudent(student);

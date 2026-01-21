@@ -32,12 +32,12 @@ class StudentTuitonTest {
         assertEquals(850.0, result, 0.01);
     }
 
-    //  Just below scholarship eligibility (11)
+    //  Just below maximum credit hours  (11)
     @Test
     public void testTuition_JustBelowScholarship() {
         double result = student.calculateTuitionFees(11, true, true);
-        // Scholarship not applied: 11*350 + 500 = 4350 + 500 = 4350? wait check
-        double expected = 11*350 + 500; // 3850 + 500 = 4350? let's calculate
+
+        double expected = 11*350 + 500;
         // 11*350 = 3850 + 500 = 4350
         assertEquals(4350.0, result, 0.01);
     }
@@ -46,7 +46,7 @@ class StudentTuitonTest {
     @Test
     public void testTuition_Scholarship_InState() {
         double result = student.calculateTuitionFees(12, true, true);
-        // Discount: 12*350*0.75 + 500
+
         double expected = 12*350*0.75 + 500;
         assertEquals(expected, result, 0.01); // 12*350=4200*0.75=3150+500=3650
     }
@@ -55,7 +55,7 @@ class StudentTuitonTest {
     @Test
     public void testTuition_Scholarship_OutOfState() {
         double result = student.calculateTuitionFees(12, false, true);
-        // Discount: 12*850*0.80 + 500
+
         double expected = 12*850*0.80 + 500; // 10200*0.80=8160+500=8660
         assertEquals(expected, result, 0.01);
     }

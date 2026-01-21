@@ -31,7 +31,6 @@ public class Grade {
         if (score < 0.0 || score > 100.0) {
             return "INVALID";
         }
-
         if (score >= 93.0) {
             return "A";
         } else if (score >= 90.0) {

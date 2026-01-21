@@ -14,7 +14,7 @@ public class StudentEnrollmentSystemTest extends BaseSystemTest {
 
         assertEquals(0, studentRepo.getStudentCount(), "Student repository should be empty initially");
 
-         Student student = new Student("S001", "John Doe", "john@university.edu", 20, "Computer Science");
+         Student student = new Student("S001", "Eglis Braho", "eglis@university.edu", 20, "Computer Science");
 
         studentRepo.addStudent(student);
         System.out.println(" Step 7: Student created successfully: John Doe");
@@ -57,7 +57,7 @@ public class StudentEnrollmentSystemTest extends BaseSystemTest {
 
         System.out.println(" Step 1: Courses tab displayed");
 
-        Course cs201 = new Course("CS201", "Data Structures", "Dr. Johnson", 3, 3, "CS");
+        Course cs201 = new Course("CS201", "Data Structures", "Dr. Flori", 3, 3, "CS");
         courseRepo.addCourse(cs201);
         System.out.println(" Step 2: Course CS201 created successfully");
 
@@ -138,9 +138,9 @@ public class StudentEnrollmentSystemTest extends BaseSystemTest {
         assertEquals(10, studentRepo.getStudentCount(), "All 10 students should be created");
         System.out.println(" Step 1: 10 students created (S001-S010)");
 
-        Course cs101 = new Course("CS101", "Intro to Programming", "Dr. Smith", 3, 30,"CS");
-        Course cs102 = new Course("CS102", "Data Structures", "Dr. Jones", 3, 5,"LAW");
-        Course cs103 = new Course("CS103", "Algorithms", "Dr. Brown", 3, 20,"Architecture");
+        Course cs101 = new Course("CS101", "Intro to Programming", "Dr. Sami", 3, 30,"CS");
+        Course cs102 = new Course("CS102", "Data Structures", "Dr. Armiri", 3, 5,"LAW");
+        Course cs103 = new Course("CS103", "Algorithms", "Dr. Enejda", 3, 20,"Architecture");
 
         courseRepo.addCourse(cs101);
         courseRepo.addCourse(cs102);

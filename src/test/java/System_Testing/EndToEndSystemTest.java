@@ -63,7 +63,7 @@ public class EndToEndSystemTest extends BaseSystemTest {
         assertTrue(scholarship1 >= 0);
 
 
-        System.out.println("\n--- SOPHOMORE YEAR ---");
+        System.out.println("\n SOPHOMORE YEAR ");
 
 
         for (int i = 1; i <= 5; i++) {

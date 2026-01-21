@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CourseFillRateTest {
 
-    Course course = new Course("C001", "Test Course", "Pr.Adam", 3, 100, "CS");
+    Course course = new Course("C001", "Test Course", "Pr.Ardian", 3, 100, "CS");
 
 
     @Test

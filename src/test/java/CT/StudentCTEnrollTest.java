@@ -9,7 +9,6 @@ class StudentCTEnrollTest {
     Student student = new Student("S001", "Test1", "test1@edu", 20, "CS");
 
 
-
     @Test
     void statementCoverageTests() {
         // Invalid input
@@ -33,24 +32,24 @@ class StudentCTEnrollTest {
 
     @Test
     void branchCoverageTests() {
-        // Compound condition → true
+        // Compound condition -> true
         assertFalse(student.canEnroll(-1, 0, 3.0));
-        // Compound condition → false
+        // Compound condition -> false
         assertTrue(student.canEnroll(12, 3, 3.0));
 
-        // GPA >= 3.5 → true
+        // GPA >= 3.5 -> true
         assertTrue(student.canEnroll(18, 3, 3.6));
-        // GPA >= 3.5 → false
+        // GPA >= 3.5 -> false
         assertTrue(student.canEnroll(12, 3, 3.2));
 
-        // GPA < 2.0 → true
+        // GPA < 2.0 ->true
         assertTrue(student.canEnroll(10, 2, 1.5));
-        // GPA < 2.0 → false
+        // GPA < 2.0 -> false
         assertTrue(student.canEnroll(12, 3, 3.0));
 
-        // currentCredits + courseCredits > maxCredits → true
+        // currentCredits + courseCredits > maxCredits-> true
         assertFalse(student.canEnroll(19, 3, 3.6));
-        // currentCredits + courseCredits > maxCredits → false
+        // currentCredits + courseCredits > maxCredits ->false
         assertTrue(student.canEnroll(15, 3, 3.0));
     }
     @Test

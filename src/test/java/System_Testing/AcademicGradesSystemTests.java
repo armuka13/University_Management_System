@@ -20,16 +20,16 @@ public class AcademicGradesSystemTests extends BaseSystemTest {
     void testST002_AcademicProgressTracking() {
         System.out.println("\nST-002: Academic Progress Tracking");
 
-        Student student = new Student("S002", "Jane Smith", "jane@university.edu", 21, "Mathematics");
+        Student student = new Student("S002", "Eglis Braho", "eglis@university.edu", 21, "Mathematics");
         studentRepo.addStudent(student);
         System.out.println(" Step 2: Student S002 created successfully");
 
         Course[] courses = {
-                new Course("MATH101", "Calculus I", "Dr. Johnson", 3, 30,"CS"),
-                new Course("MATH102", "Calculus II", "Dr. Wilson", 3, 30,"CS"),
-                new Course("MATH201", "Linear Algebra", "Dr. Brown", 3, 30,"CS"),
-                new Course("MATH202", "Discrete Math", "Dr. Davis", 3, 30,"CS"),
-                new Course("MATH301", "Abstract Algebra", "Dr. Miller", 3, 30,"CS")
+                new Course("MATH101", "Calculus I", "Dr. Ani", 3, 30,"CS"),
+                new Course("MATH102", "Calculus II", "Dr. Eri", 3, 30,"CS"),
+                new Course("MATH201", "Linear Algebra", "Dr. Andi", 3, 30,"CS"),
+                new Course("MATH202", "Discrete Math", "Dr. Deivi", 3, 30,"CS"),
+                new Course("MATH301", "Abstract Algebra", "Dr. Arjan", 3, 30,"CS")
         };
         for (Course course : courses) {
             courseRepo.addCourse(course);
