@@ -1,4 +1,4 @@
-package Tests.Integration_Tests;
+package Tests.Integration_Testing;
 
 import edu.university.main.controller.StudentController;
 import edu.university.main.model.Student;

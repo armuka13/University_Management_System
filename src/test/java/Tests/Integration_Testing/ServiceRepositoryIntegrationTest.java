@@ -1,4 +1,4 @@
-package Tests.Integration_Tests;
+package Tests.Integration_Testing;
 import edu.university.main.model.Student;
 import edu.university.main.model.Course;
 import edu.university.main.repository.StudentRepository;
@@ -6,8 +6,6 @@ import edu.university.main.repository.CourseRepository;
 import edu.university.main.service.EnrollmentService;
 import edu.university.main.service.CourseManagementService;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
