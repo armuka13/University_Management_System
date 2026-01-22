@@ -89,4 +89,12 @@ java -jar target/university-management-system-1.0.0.jar
 
 ---
 
-## 📂 Project Structure
+## Tests Included
+- Unit tests for services and repositories
+- GUI component tests
+- Test coverage reports
+- BVT
+- ECT
+- CT
+- Integration tests
+- System tests
